@@ -1,6 +1,6 @@
 package com.fake.marketplace.domain.repository.account
 
-import com.fake.marketplace.data.source.locale.entities.account.AccountEntity
+import com.fake.marketplace.domain.entities.account.AccountEntity
 import kotlinx.coroutines.flow.Flow
 
 interface AccountRepository {

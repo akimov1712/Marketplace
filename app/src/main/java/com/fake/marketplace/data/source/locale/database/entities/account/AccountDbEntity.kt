@@ -1,4 +1,4 @@
-package com.fake.marketplace.data.source.locale.entities.account
+package com.fake.marketplace.data.source.locale.database.entities.account
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

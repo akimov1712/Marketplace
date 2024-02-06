@@ -1,7 +1,7 @@
 package com.fake.marketplace.domain.entities.product
 
-import com.fake.marketplace.data.source.locale.entities.product.FeedbackDbEntity
-import com.fake.marketplace.data.source.locale.entities.product.PriceDbEntity
+import com.fake.marketplace.data.source.locale.database.entities.product.FeedbackDbEntity
+import com.fake.marketplace.data.source.locale.database.entities.product.PriceDbEntity
 
 data class ProductEntity(
     val id: String,

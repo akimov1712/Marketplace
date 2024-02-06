@@ -1,4 +1,4 @@
-package com.fake.marketplace.data.source.locale.entities.product
+package com.fake.marketplace.data.source.locale.database.entities.product
 
 import androidx.room.Embedded
 import androidx.room.Entity
