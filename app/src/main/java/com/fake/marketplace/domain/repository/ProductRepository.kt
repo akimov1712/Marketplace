@@ -7,6 +7,6 @@ interface ProductRepository {
 
     suspend fun getProductList(): Flow<List<ProductEntity>>
     suspend fun getFavoriteProductList(): Flow<List<ProductEntity>>
-    suspend fun getProductItem(id: Int): Flow<ProductEntity>
+    suspend fun getProductItem(id: String): Flow<ProductEntity>
 
 }
