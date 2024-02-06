@@ -32,4 +32,9 @@ object ProductMapper {
         ingredients = dbEntity.ingredients,
     )
 
+
+    fun mapDtoListToDbList(list: List<ProductDto>) = list.map { mapDtoToDb(it) }
+
+    fun mapDbListToEntityList(list: List<ProductDbEntity>) = list.map { mapDbToEntity(it) }
+
 }

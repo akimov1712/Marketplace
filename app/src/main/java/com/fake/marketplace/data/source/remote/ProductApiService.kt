@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface ProductApiService {
 
     @GET("/")
-    suspend fun getProductList(): Response<List<ProductResponse>>
+    suspend fun getProductList(): Response<ProductResponse>
 
 }

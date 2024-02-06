@@ -35,9 +35,4 @@ open class BaseRetrofitSource {
         }
     }
 
-    data class ErrorResponseBody(
-        val cod: Int,
-        val message: String
-    )
-
 }
