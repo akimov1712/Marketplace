@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-interface DataModule {
+interface RepositoryModule {
 
     @Binds
     @Singleton
@@ -24,19 +24,5 @@ interface DataModule {
     @Binds
     @Singleton
     fun bindProductRepository(impl: ProductRepositoryImpl): ProductRepository
-
-    companion object{
-
-        @Provides
-        @Singleton
-        fun provideAccountDao(application: Application) =
-            AppDatabase.getInstance(application).accountDao()
-
-        @Provides
-        @Singleton
-        fun provideProductDao(application: Application) =
-            AppDatabase.getInstance(application).productDao()
-
-    }
 
 }
