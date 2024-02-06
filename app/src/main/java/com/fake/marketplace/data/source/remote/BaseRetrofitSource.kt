@@ -20,7 +20,7 @@ open class BaseRetrofitSource {
         } catch (e: HttpException){
             throw createBackendException(e)
         } catch (e: IOException){
-            throw ConnectException()
+            throw ConnectException(e.message)
         }
     }
 

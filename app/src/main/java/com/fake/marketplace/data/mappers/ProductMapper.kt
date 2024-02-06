@@ -4,7 +4,7 @@ import com.fake.marketplace.data.source.locale.database.entities.product.Product
 import com.fake.marketplace.data.source.remote.entities.ProductDto
 import com.fake.marketplace.domain.entities.product.ProductEntity
 
-object ProductMapper {
+object ProductMapper  {
 
     fun mapDtoToDb(dto: ProductDto) = ProductDbEntity(
         id = dto.id,

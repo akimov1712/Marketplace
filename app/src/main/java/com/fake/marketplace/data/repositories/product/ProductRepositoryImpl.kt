@@ -17,12 +17,11 @@ import javax.inject.Inject
 class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val productApi: ProductApiService,
-    private val productMapper: ProductMapper
 ): ProductRepository, BaseRetrofitSource() {
 
     override fun getCachedProduct() = productDao.getProductList().map {
         it ?: throw CachedDataException() // студия не видит смысла в этой строке(
-        it.map { product -> productMapper.mapDbToEntity(product) }
+        it.map { product -> ProductMapper.mapDbToEntity(product) }
     }
 
     override suspend fun getProductList() =
@@ -31,16 +30,16 @@ class ProductRepositoryImpl @Inject constructor(
             returnDataFlow(productResponse)
         }
 
-    private fun returnDataFlow(productResponse: Response<ProductResponse>): Flow<List<ProductEntity>> {
+    private suspend fun returnDataFlow(productResponse: Response<ProductResponse>): Flow<List<ProductEntity>> {
         processData(productResponse)
         return getCachedProduct()
     }
 
-    private fun processData(productResponse: Response<ProductResponse>) {
+    private suspend fun processData(productResponse: Response<ProductResponse>) {
         if (productResponse.isSuccessful) {
             productResponse.body()?.let {
                 productDao.addProductList(
-                    productMapper.mapDtoListToDbList(it.items)
+                    ProductMapper.mapDtoListToDbList(it.items)
                 )
             }
         }
@@ -53,7 +52,7 @@ class ProductRepositoryImpl @Inject constructor(
 
     override fun getProductItem(id: String) =
         productDao.getProductItem(id).map {
-            productMapper.mapDbToEntity(it)
+            ProductMapper.mapDbToEntity(it)
         }
 
 }
