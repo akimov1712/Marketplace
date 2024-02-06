@@ -1,12 +1,12 @@
 package com.fake.marketplace.domain.repository.product
 
-import com.fake.marketplace.domain.entities.product.ProductEntity
+import com.fake.marketplace.data.source.locale.entities.product.ProductDbEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
 
-    suspend fun getProductList(): Flow<List<ProductEntity>>
-    suspend fun getFavoriteProductList(): Flow<List<ProductEntity>>
-    suspend fun getProductItem(id: String): Flow<ProductEntity>
+    suspend fun getProductList(): Flow<List<ProductDbEntity>>
+    suspend fun getFavoriteProductList(): Flow<List<ProductDbEntity>>
+    suspend fun getProductItem(id: String): Flow<ProductDbEntity>
 
 }
