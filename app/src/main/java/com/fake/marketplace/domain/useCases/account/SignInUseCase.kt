@@ -8,7 +8,7 @@ class SignInUseCase @Inject constructor(
     private val repository: AccountRepository
 ) {
 
-    suspend operator fun invoke(account: AccountEntity){
+    operator fun invoke(account: AccountEntity){
         repository.signIn(account)
     }
 

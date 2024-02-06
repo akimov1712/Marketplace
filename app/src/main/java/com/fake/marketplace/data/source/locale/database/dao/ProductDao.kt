@@ -1,6 +1,8 @@
 package com.fake.marketplace.data.source.locale.database.dao
 
 import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.fake.marketplace.data.source.locale.database.entities.product.ProductDbEntity
 import kotlinx.coroutines.flow.Flow
@@ -9,12 +11,15 @@ import kotlinx.coroutines.flow.Flow
 interface ProductDao {
 
     @Query("SELECT * FROM products")
-    suspend fun getProductList(): Flow<List<ProductDbEntity>>
+    fun getProductList(): Flow<List<ProductDbEntity>>
 
     @Query("SELECT * FROM products WHERE id IN (SELECT productId FROM favorite_products)")
-    suspend fun getFavoriteProductList(): Flow<List<ProductDbEntity>>
+    fun getFavoriteProductList(): Flow<List<ProductDbEntity>>
 
     @Query("SELECT * FROM products WHERE id=:id LIMIT 1")
-    suspend fun getProductItem(id: String): Flow<ProductDbEntity>
+    fun getProductItem(id: String): Flow<ProductDbEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addProductList(productList: List<ProductDbEntity>)
 
 }

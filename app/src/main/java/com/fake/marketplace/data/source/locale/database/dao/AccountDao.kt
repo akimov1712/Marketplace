@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface AccountDao {
 
     @Query("SELECT * FROM account LIMIT 1")
-    suspend fun getAccount(): Flow<AccountDbEntity>
+    fun getAccount(): Flow<AccountDbEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addAccount(account: AccountDbEntity)

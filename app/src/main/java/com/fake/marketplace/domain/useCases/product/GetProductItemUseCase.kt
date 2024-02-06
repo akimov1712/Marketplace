@@ -7,6 +7,6 @@ class GetProductItemUseCase @Inject constructor(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke(id: String) = repository.getProductItem(id)
+    operator fun invoke(id: String) = repository.getProductItem(id)
 
 }

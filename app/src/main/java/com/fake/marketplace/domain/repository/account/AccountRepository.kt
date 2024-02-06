@@ -5,8 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface AccountRepository {
 
-    suspend fun signIn(account: AccountEntity)
-    suspend fun getAccount(): Flow<AccountEntity>
+    fun signIn(account: AccountEntity)
+    fun getAccount(): Flow<AccountEntity>
     suspend fun logOut()
 
 }

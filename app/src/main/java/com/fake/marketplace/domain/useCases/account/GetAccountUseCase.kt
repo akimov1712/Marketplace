@@ -7,6 +7,6 @@ class GetAccountUseCase @Inject constructor(
     private val repository: AccountRepository
 ) {
 
-    suspend operator fun invoke() = repository.getAccount()
+    operator fun invoke() = repository.getAccount()
 
 }
