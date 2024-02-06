@@ -1,6 +1,6 @@
-package com.fake.marketplace.domain.repository
+package com.fake.marketplace.domain.repository.product
 
-import com.fake.marketplace.domain.entities.ProductEntity
+import com.fake.marketplace.domain.entities.product.ProductEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {

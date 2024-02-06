@@ -1,4 +1,4 @@
-package com.fake.marketplace.domain.entities
+package com.fake.marketplace.domain.entities.product
 
 data class PriceEntity(
     val price: String,
