@@ -1,10 +1,13 @@
 package com.fake.marketplace.presentation.screens.signIn
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fake.marketplace.R
+import com.fake.marketplace.domain.entities.account.AccountEntity
+import com.fake.marketplace.domain.useCases.account.SignInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val application: Application
+    private val application: Application,
+    private val signInUseCase: SignInUseCase
 ): AndroidViewModel(application) {
 
     private val _state = MutableStateFlow<SignInState>(SignInState.Initial)
@@ -24,7 +28,8 @@ class SignInViewModel @Inject constructor(
         val parseSurname = parseString(surname)
         val parseNumberPhone = parseString(numberPhone)
         viewModelScope.launch {
-            // вызов useCase для авторизации
+            val account = AccountEntity(parseName, parseSurname, parseNumberPhone)
+            signInUseCase(account)
             _state.value = SignInState.AuthorizationSuccessfull
         }
     }

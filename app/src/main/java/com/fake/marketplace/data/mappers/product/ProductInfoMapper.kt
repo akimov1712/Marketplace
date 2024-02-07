@@ -1,4 +1,4 @@
-package com.fake.marketplace.data.mappers
+package com.fake.marketplace.data.mappers.product
 
 import com.fake.marketplace.data.source.locale.database.entities.product.InfoDbEntity
 import com.fake.marketplace.data.source.remote.entities.InfoDto

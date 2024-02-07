@@ -1,9 +1,8 @@
 package com.fake.marketplace.data.repositories.product
 
 import com.fake.marketplace.data.CachedDataException
-import com.fake.marketplace.data.mappers.ProductMapper
+import com.fake.marketplace.data.mappers.product.ProductMapper
 import com.fake.marketplace.data.source.locale.database.dao.ProductDao
-import com.fake.marketplace.data.source.locale.database.entities.product.ProductDbEntity
 import com.fake.marketplace.data.source.remote.BaseRetrofitSource
 import com.fake.marketplace.data.source.remote.ProductApiService
 import com.fake.marketplace.data.source.remote.entities.ProductResponse

@@ -35,15 +35,14 @@ class FormatPhoneTextWatcher(
         var formatted = ""
         var index = 0
 
-        for (i in 0 until phoneFormat.length) {
+        for (element in phoneFormat) {
             if (index >= digits.length) break
 
-            val placeholder = phoneFormat[i]
-            if (placeholder == 'X') {
+            if (element == 'X') {
                 formatted += digits[index]
                 index++
             } else {
-                formatted += placeholder
+                formatted += element
             }
         }
 

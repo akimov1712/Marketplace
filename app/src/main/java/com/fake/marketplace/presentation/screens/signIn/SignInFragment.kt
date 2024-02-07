@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.fake.marketplace.R
 import com.fake.marketplace.databinding.FragmentSignInBinding
 import com.fake.marketplace.presentation.base.BaseFragment
@@ -65,6 +66,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                             Toast.makeText(requireContext(),
                                 getString(R.string.error_signIn), Toast.LENGTH_SHORT).show()
                         }
+                        is SignInState.AuthorizationSuccessfull -> {
+                            findNavController().navigate(
+                                SignInFragmentDirections.actionSignInFragmentToHomeFragment()
+                            )
+                        }
                         else -> {}
                     }
                 }
@@ -117,7 +123,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         setSettingInputSurname()
         setSettingInputNumberPhone()
         with(binding){
-
+            btnSignIn.setOnClickListener {
+                val name = etName.text.toString()
+                val surname = etSurname.text.toString()
+                val numberPhone = etNumberPhone.text.toString()
+                viewModel.signIn(
+                    name,
+                    surname,
+                    numberPhone
+                )
+            }
         }
     }
 }
