@@ -13,16 +13,10 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SingleActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<TestViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single)
-        lifecycleScope.launch {
-            viewModel.getProductList().collect{
-                Log.d("SSS", it.toString())
-            }
-        }
+
     }
 
 

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Marketplace</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Вход</string>
+    <string name="program_conditions">Нажимая кнопку “Войти”, Вы принимаете\n<u>условия программы лояльности</u></string>
 </resources>
