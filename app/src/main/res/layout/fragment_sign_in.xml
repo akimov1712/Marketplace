@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_grey"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context=".presentation.screens.signIn.SignInFragment">
@@ -18,7 +19,7 @@
         style="@style/title_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in"
+        android:text="@string/entrance"
         android:gravity="center_horizontal"
         android:layout_weight="1"/>
 
@@ -31,14 +32,16 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_name"
+            style="@style/app_til_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_name"
+                style="@style/app_et_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="match_parent"
+                android:hint="@string/name" />
 
         </com.google.android.material.textfield.TextInputLayout>
         
@@ -48,14 +51,16 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_surname"
+            style="@style/app_til_style"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_surname"
+                style="@style/app_et_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="match_parent"
+                android:hint="@string/surname" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,14 +70,20 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_number_phone"
+            style="@style/app_til_style"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            app:endIconMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_number_phone"
+                style="@style/app_et_style"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="hint" />
+                android:layout_height="match_parent"
+                android:inputType="phone"
+                android:maxLength="16"
+                android:digits="0123456789+"
+                android:hint="@string/number_phone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,10 +91,11 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_sign_in"
+            style="@style/app_button_style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="52dp"/>
 
     </LinearLayout>
 

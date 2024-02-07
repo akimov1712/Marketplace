@@ -15,7 +15,7 @@ open class BaseFragment<VB: ViewBinding>(
 ): Fragment() {
 
     private var _binding: VB? = null
-    private val binding = _binding ?: throw RuntimeException("ViewBinding == null")
+    val binding get() = _binding ?: throw RuntimeException("ViewBinding == null")
 
     override fun onCreateView(
         inflater: LayoutInflater,

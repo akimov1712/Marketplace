@@ -2,6 +2,14 @@
     <string name="app_name">Marketplace</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sign_in">Вход</string>
+    <string name="entrance">Вход</string>
+    <string name="sign_in">Войти</string>
     <string name="program_conditions">Нажимая кнопку “Войти”, Вы принимаете\n<u>условия программы лояльности</u></string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="number_phone">Номер телефона</string>
+    <string name="error_signIn">Ошибка авторизации</string>
+    <string name="field_cannot_empty">Поле не может быть пустым</string>
+    <string name="field_have_2_chars">Поле должно содержать минимум 2 символа</string>
+    <string name="check_right_input_number">Проверьте правильность введеного номера</string>
 </resources>
