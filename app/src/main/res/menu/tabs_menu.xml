@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/main_navigation"
+        android:icon="@drawable/ic_menu_home"
+        android:title="@string/main"/>
+
+    <item
+        android:id="@+id/catalog_navigation"
+        android:icon="@drawable/ic_menu_catalog"
+        android:title="@string/catalog"/>
+
+    <item
+        android:id="@+id/bag_navigation"
+        android:icon="@drawable/ic_menu_bag"
+        android:title="@string/bag"/>
+
+    <item
+        android:id="@+id/discount_navigation"
+        android:icon="@drawable/ic_menu_discount"
+        android:title="@string/discount"/>
+
+    <item
+        android:id="@+id/profile_navigation"
+        android:icon="@drawable/ic_menu_account"
+        android:title="@string/profile"/>
+
+
+</menu>

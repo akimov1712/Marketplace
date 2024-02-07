@@ -81,12 +81,12 @@ dependencies {
     implementation("androidx.room:room-ktx:$room")
 
 //    ViewModel
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
-
+//    Default
     implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

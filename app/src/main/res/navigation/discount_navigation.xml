@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/discount_navigation"
+    app:startDestination="@id/discountFragment">
+
+    <fragment
+        android:id="@+id/discountFragment"
+        android:name="com.fake.marketplace.presentation.screens.tabs.discount.DiscountFragment"
+        android:label="fragment_discount"
+        tools:layout="@layout/fragment_discount" />
+</navigation>

@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.fake.marketplace.R
-import com.fake.marketplace.databinding.FragmentHomeBinding
+import com.fake.marketplace.databinding.FragmentDiscountBinding
+import com.fake.marketplace.databinding.FragmentMainBinding
 import com.fake.marketplace.presentation.base.BaseFragment
-import dagger.hilt.android.AndroidEntryPoint
-
-@AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
 
+class MainFragment : BaseFragment<FragmentMainBinding>(FragmentMainBinding::inflate){
 
 }

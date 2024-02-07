@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.fake.marketplace.presentation.screens.tabs.main.HomeFragment"
+        android:name="com.fake.marketplace.presentation.screens.tabs.TabsFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_tabs" />
 </navigation>

@@ -12,4 +12,9 @@
     <string name="field_cannot_empty">Поле не может быть пустым</string>
     <string name="field_have_2_chars">Поле должно содержать минимум 2 символа</string>
     <string name="check_right_input_number">Проверьте правильность введеного номера</string>
+    <string name="main">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="bag">Корзина</string>
+    <string name="discount">Акции</string>
+    <string name="profile">Профиль</string>
 </resources>
