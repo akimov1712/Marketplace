@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:elevation="4dp"
+    app:cardCornerRadius="8dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginHorizontal="4dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            style="@style/app_image_slider_style"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+        </com.denzcoskun.imageslider.ImageSlider>
+
+        <ImageButton
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_heart_stroke"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_old_price"
+            style="@style/element_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:paddingHorizontal="2dp"
+            android:layout_marginTop="2dp"
+            tools:text="749 ₽"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="@+id/image_slider"
+            app:layout_constraintTop_toBottomOf="@+id/image_slider" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+            android:rotation="-10"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_old_price"
+            app:layout_constraintEnd_toEndOf="@+id/tv_old_price"
+            app:layout_constraintStart_toStartOf="@+id/tv_old_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_old_price" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            style="@style/title_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            tools:text="489 ₽"
+            app:layout_constraintStart_toStartOf="@+id/tv_old_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_old_price" />
+
+        <TextView
+            android:id="@+id/tv_discount"
+            style="@style/element_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="-35 %"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/white"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="3dp"
+            android:background="@drawable/background_discount"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_price"
+            app:layout_constraintStart_toEndOf="@+id/tv_price"
+            app:layout_constraintTop_toTopOf="@+id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/title_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="ESFOLIO"
+            android:layout_marginTop="2dp"
+            app:layout_constraintStart_toStartOf="@+id/tv_price"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            style="@style/caption_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="6dp"
+            android:layout_marginTop="2dp"
+            android:textColor="@color/dark_grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            tools:text="Лосьон для тела`ESFOLIO` COENZYME Q 10 Увлажняющий 500 мл" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="@+id/tv_subtitle"
+            app:layout_constraintTop_toBottomOf="@+id/tv_subtitle" />
+
+        <TextView
+            android:id="@+id/tv_feedback_rating"
+            style="@style/element_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="4.5"
+            android:textColor="@color/orange"
+            android:layout_marginStart="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/tv_feedback_count"
+            style="@style/element_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey"
+            android:layout_marginStart="2dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_feedback_rating"
+            app:layout_constraintStart_toEndOf="@+id/tv_feedback_rating"
+            app:layout_constraintTop_toTopOf="@+id/tv_feedback_rating"
+            tools:text="(51)" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/background_floating_button"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_feedback_rating" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
