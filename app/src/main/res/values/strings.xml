@@ -17,4 +17,11 @@
     <string name="bag">Корзина</string>
     <string name="discount">Акции</string>
     <string name="profile">Профиль</string>
+    <string name="sorted_popular">По популярности</string>
+    <string name="filters">Фильтры</string>
+    <string name="show_all">Смотреть все</string>
+    <string name="face">Лицо</string>
+    <string name="body">Тело</string>
+    <string name="tan">Загар</string>
+    <string name="mask">Маска</string>
 </resources>

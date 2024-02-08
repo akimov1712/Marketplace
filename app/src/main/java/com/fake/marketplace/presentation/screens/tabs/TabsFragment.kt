@@ -1,8 +1,6 @@
 package com.fake.marketplace.presentation.screens.tabs
 
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.fake.marketplace.R
 import com.fake.marketplace.databinding.FragmentTabsBinding
@@ -14,14 +12,7 @@ class TabsFragment : BaseFragment<FragmentTabsBinding>(FragmentTabsBinding::infl
 
     override fun setViews() {
         super.setViews()
-        setStatusBar()
         setBottomBar()
-    }
-
-    private fun setStatusBar(){
-        val window = requireActivity().window
-        window.statusBarColor = requireActivity().resources.getColor(R.color.light_grey)
-        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     private fun setBottomBar(){

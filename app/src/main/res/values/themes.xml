@@ -46,5 +46,19 @@
         <item name="android:background">@drawable/background_button</item>
     </style>
 
+    <style name="app_chip_style" parent="@style/Widget.Material3.Chip.Input">
+        <item name="android:textColor">@color/selector_color_text_chip</item>
+        <item name="android:textAppearance">@style/title_4</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="closeIconVisible">false</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="android:checked">false</item>
+        <item name="closeIconEnabled">false</item>
+        <item name="closeIconTint">@color/selector_color_text_chip</item>
+        <item name="chipBackgroundColor">@color/selector_color_checked_chip</item>
+    </style>
+
 
 </resources>
