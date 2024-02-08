@@ -9,5 +9,3 @@ class BackendException(
     val name: String,
     val code: Int
 ) : AppException()
-
-class ReadErrorSharedPref(): AppException()

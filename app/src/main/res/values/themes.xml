@@ -49,6 +49,8 @@
     <style name="app_bottom_bar_style">
         <item name="itemTextColor">@color/selector_color_icon_bottom_menu</item>
         <item name="itemIconSize">28dp</item>
+        <item name="elevation">6dp</item>
+        <item name="android:outlineAmbientShadowColor">@color/black</item>
         <item name="android:background">@color/white</item>
         <item name="labelVisibilityMode">labeled</item>
         <item name="itemTextAppearanceActive">@style/caption_1</item>

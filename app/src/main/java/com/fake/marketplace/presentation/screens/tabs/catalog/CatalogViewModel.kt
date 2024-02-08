@@ -4,6 +4,9 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fake.marketplace.Const.SHOW_ALL_TAG
+import com.fake.marketplace.data.BackendException
+import com.fake.marketplace.data.CachedDataException
+import com.fake.marketplace.data.ParseBackendResponseException
 import com.fake.marketplace.domain.entities.SortedTypeEnum
 import com.fake.marketplace.domain.entities.product.ProductEntity
 import com.fake.marketplace.domain.useCases.product.GetProductListUseCase
@@ -24,9 +27,19 @@ class CatalogViewModel @Inject constructor(
     private var fullList: List<ProductEntity> = emptyList()
 
     fun getProductList(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
-        getProductListUseCase().collect{
-            fullList = it
-            sortedProductList(tag = tag, sortType = sortType)
+        try {
+            getProductListUseCase().collect{
+                fullList = it
+                sortedProductList(tag = tag, sortType = sortType)
+            }
+        } catch (e: BackendException){
+            _state.value = CatalogState.ErrorLoadingData("Ошибка на стороне сервера ${e.code}\n${e.message}")
+        } catch (e: CachedDataException){
+            _state.value = CatalogState.ErrorLoadingData("Нет соединения с сервером.\nЛокальная база пуста")
+        } catch (e: ParseBackendResponseException){
+            _state.value = CatalogState.ErrorLoadingData("Ошибка при чтении данных")
+        } catch (e: Exception){
+            _state.value = CatalogState.ErrorLoadingData("Произошла непредвиденная ошибка")
         }
     }
 

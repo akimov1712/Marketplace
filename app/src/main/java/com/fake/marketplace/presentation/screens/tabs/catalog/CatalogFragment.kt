@@ -54,6 +54,11 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
                                 rvProducts.visibility = View.GONE
                                 loader.visibility = View.VISIBLE
                             }
+                            is CatalogState.ErrorLoadingData -> {
+                                rvProducts.visibility = View.GONE
+                                loader.visibility = View.GONE
+                                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
                 }
