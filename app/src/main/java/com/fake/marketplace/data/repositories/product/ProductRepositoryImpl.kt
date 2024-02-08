@@ -1,8 +1,10 @@
 package com.fake.marketplace.data.repositories.product
 
+import android.util.Log
 import com.fake.marketplace.data.CachedDataException
 import com.fake.marketplace.data.mappers.product.ProductMapper
 import com.fake.marketplace.data.source.locale.database.dao.ProductDao
+import com.fake.marketplace.data.source.locale.database.entities.product.ProductDbEntity
 import com.fake.marketplace.data.source.remote.BaseRetrofitSource
 import com.fake.marketplace.data.source.remote.ProductApiService
 import com.fake.marketplace.data.source.remote.entities.ProductResponse
@@ -18,9 +20,15 @@ class ProductRepositoryImpl @Inject constructor(
     private val productApi: ProductApiService,
 ): ProductRepository, BaseRetrofitSource() {
 
-    override fun getCachedProduct() = productDao.getProductList().map {
-        it ?: throw CachedDataException() // студия не видит смысла в этой строке(
-        it.map { product -> ProductMapper.mapDbToEntity(product) }
+    override fun getCachedProduct() =
+        productDao.getProductList().map {
+            mapDbListAndCheckEmptyList(it)
+        }
+
+
+    private fun mapDbListAndCheckEmptyList(it: List<ProductDbEntity>): List<ProductEntity> {
+        it ?: throw CachedDataException() // студия не видит смысла в этой строке:(
+        return it.map { product -> ProductMapper.mapDbToEntity(product) }
     }
 
     override suspend fun getProductList() =

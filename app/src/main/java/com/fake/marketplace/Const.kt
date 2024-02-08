@@ -31,4 +31,10 @@ object Const {
         ),
     )
 
+    const val SHOW_ALL_TAG = ""
+    const val FACE_TAG = "face"
+    const val BODY_TAG = "body"
+    const val SUNTAN_TAG = "suntan"
+    const val MASK_TAG = "mask"
+
 }

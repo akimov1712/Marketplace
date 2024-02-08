@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/light_grey"
+    android:background="@color/back_light_grey"
     tools:context=".presentation.screens.splash.SplashFragment">
 
     <androidx.cardview.widget.CardView
@@ -18,7 +18,7 @@
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:indeterminateTint="@color/pink"/>
+            android:indeterminateTint="@color/element_pink"/>
 
     </androidx.cardview.widget.CardView>
 

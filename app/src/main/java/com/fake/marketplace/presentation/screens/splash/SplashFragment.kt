@@ -31,7 +31,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun setStatusBar(){
         val window = requireActivity().window
-        window.statusBarColor = requireActivity().resources.getColor(R.color.light_grey)
+        window.statusBarColor = requireActivity().resources.getColor(R.color.back_light_grey)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
