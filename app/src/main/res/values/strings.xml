@@ -26,4 +26,11 @@
     <string name="mask">Маска</string>
     <string name="sorted_price_desc">По убыванию цены</string>
     <string name="sorted_price_asc">По возрастанию цены</string>
+    <string name="lk">Личный кабинет</string>
+    <string name="favorite">Избранное</string>
+    <string name="shops">Магазины</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="offer">Оферта</string>
+    <string name="refund">Возврат товара</string>
+    <string name="exit">Выйти</string>
 </resources>
