@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.fake.marketplace.Const
 import com.fake.marketplace.Const.BODY_TAG
 import com.fake.marketplace.Const.FACE_TAG
 import com.fake.marketplace.Const.MASK_TAG
@@ -67,8 +66,15 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
 
     }
 
-    override fun setRecyclerViews() {
-        super.setRecyclerViews()
+    override fun setAdapters() {
+        super.setAdapters()
+        setProductAdapter()
+    }
+
+    private fun setProductAdapter() {
+        adapter.setOnFavoriteClickListener = { id, isFavorite ->
+            viewModel.updateFavoriteState(id, isFavorite)
+        }
         binding.rvProducts.adapter = adapter
     }
 

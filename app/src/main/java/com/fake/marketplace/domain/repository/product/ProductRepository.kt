@@ -7,6 +7,7 @@ interface ProductRepository {
 
     suspend fun getProductList(): Flow<List<ProductEntity>>
     suspend fun getFavoriteProductList(): Flow<List<ProductEntity>>
+    suspend fun updateFavoriteProduct(id: String, isFavorite: Boolean)
     fun getProductItem(id: String): Flow<ProductEntity>
     suspend fun getCachedProduct(): Flow<List<ProductEntity>>
 

@@ -34,11 +34,11 @@ open class BaseFragment<VB: ViewBinding>(
 
     open fun setViews(){
         setListenersInView()
-        setRecyclerViews()
+        setAdapters()
     }
 
     open fun setListenersInView(){}
-    open fun setRecyclerViews(){}
+    open fun setAdapters(){}
 
     open fun observeViewModel(){}
 

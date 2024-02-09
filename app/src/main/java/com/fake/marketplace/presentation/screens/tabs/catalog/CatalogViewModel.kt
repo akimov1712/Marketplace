@@ -11,6 +11,7 @@ import com.fake.marketplace.domain.entities.SortedTypeEnum
 import com.fake.marketplace.domain.entities.product.ProductEntity
 import com.fake.marketplace.domain.useCases.product.GetCachedProductListUseCase
 import com.fake.marketplace.domain.useCases.product.GetProductListUseCase
+import com.fake.marketplace.domain.useCases.product.UpdateFavoriteProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,13 +24,18 @@ import javax.inject.Inject
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
     private val getProductListUseCase: GetProductListUseCase,
-    private val getCachedProductListUseCase: GetCachedProductListUseCase
+    private val getCachedProductListUseCase: GetCachedProductListUseCase,
+    private val updateFavoriteProductUseCase: UpdateFavoriteProductUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow<CatalogState>(CatalogState.Loading)
     val state = _state.asStateFlow()
 
     private var fullList: List<ProductEntity> = emptyList()
+
+    fun updateFavoriteState(id: String, isFavorite: Boolean) = viewModelScope.launch {
+        updateFavoriteProductUseCase(id, isFavorite)
+    }
 
     fun getProductList(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
         try {
