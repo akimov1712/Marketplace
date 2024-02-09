@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.screens.tabs.TabsFragment">
 
@@ -20,22 +21,10 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_menu_tabs"
+        style="@style/app_bottom_bar_style"
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="70dp"
         app:menu="@menu/tabs_menu"
-        app:elevation="6dp"
-        android:elevation="6dp"
-        app:itemTextColor="@color/selector_color_icon_bottom_menu"
-        app:itemIconSize="28dp"
-        app:background="@color/white"
-        app:backgroundTint="@color/white"
-        app:labelVisibilityMode="labeled"
-        app:itemTextAppearanceActive="@style/caption_1"
-        app:itemTextAppearanceInactive="@style/caption_1"
-        app:itemActiveIndicatorStyle="@color/transparent"
-        app:itemHorizontalTranslationEnabled="false"
-        app:itemIconTint="@color/selector_color_icon_bottom_menu"
-        app:itemRippleColor="@color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

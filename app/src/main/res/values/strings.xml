@@ -24,4 +24,6 @@
     <string name="body">Тело</string>
     <string name="tan">Загар</string>
     <string name="mask">Маска</string>
+    <string name="sorted_price_desc">По убыванию цены</string>
+    <string name="sorted_price_asc">По возрастанию цены</string>
 </resources>

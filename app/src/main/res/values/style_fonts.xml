@@ -33,7 +33,7 @@
 
     <style name="caption_1">
         <item name="fontFamily">@font/sf_pro_display_regular</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="button_text_1">

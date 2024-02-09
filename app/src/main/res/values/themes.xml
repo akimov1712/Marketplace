@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Marketplace" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/light_pink</item>
-        <item name="colorPrimaryDark">@color/pink</item>
-        <item name="colorAccent">@color/dark_grey</item>
+        <item name="colorPrimary">@color/back_light_pink</item>
+        <item name="colorPrimaryDark">@color/back_pink</item>
+        <item name="colorAccent">@color/element_dark_grey</item>
 
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -17,17 +17,17 @@
     <style name="app_til_style">
         <item name="hintEnabled">false</item>
         <item name="endIconMode">clear_text</item>
-        <item name="errorIconTint">@color/orange</item>
-        <item name="errorTextColor">@color/orange</item>
-        <item name="cursorErrorColor">@color/orange</item>
+        <item name="errorIconTint">@color/text_orange</item>
+        <item name="errorTextColor">@color/text_orange</item>
+        <item name="cursorErrorColor">@color/text_orange</item>
         <item name="errorIconDrawable">@null</item>
-        <item name="boxStrokeColor">@color/light_grey</item>
-        <item name="boxStrokeErrorColor">@color/orange</item>
+        <item name="boxStrokeColor">@color/back_light_grey</item>
+        <item name="boxStrokeErrorColor">@color/text_orange</item>
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">1dp</item>
         <item name="android:background">@drawable/background_placeholder</item>
         <item name="endIconDrawable">@drawable/ic_clear_text</item>
-        <item name="android:textColorHint">@color/grey</item>
+        <item name="android:textColorHint">@color/text_grey</item>
         <item name="android:textColor">@color/black</item>
 
     </style>
@@ -46,6 +46,21 @@
         <item name="android:background">@drawable/background_button</item>
     </style>
 
+    <style name="app_bottom_bar_style">
+        <item name="itemTextColor">@color/selector_color_icon_bottom_menu</item>
+        <item name="itemIconSize">28dp</item>
+        <item name="elevation">6dp</item>
+        <item name="android:outlineAmbientShadowColor">@color/black</item>
+        <item name="android:background">@color/white</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemTextAppearanceActive">@style/caption_1</item>
+        <item name="itemTextAppearanceInactive">@style/caption_1</item>
+        <item name="itemActiveIndicatorStyle">@color/transparent</item>
+        <item name="itemHorizontalTranslationEnabled">false</item>
+        <item name="itemIconTint">@color/selector_color_icon_bottom_menu</item>
+        <item name="itemRippleColor">@color/transparent</item>
+    </style>
+
     <style name="app_chip_style" parent="@style/Widget.Material3.Chip.Input">
         <item name="android:textColor">@color/selector_color_text_chip</item>
         <item name="android:textAppearance">@style/title_4</item>
@@ -60,5 +75,11 @@
         <item name="chipBackgroundColor">@color/selector_color_checked_chip</item>
     </style>
 
+    <style name="app_image_slider_style">
+        <item name="iss_error_image">@color/transparent</item>
+        <item name="iss_placeholder">@color/transparent</item>
+        <item name="iss_selected_dot">@drawable/background_dot_selected</item>
+        <item name="iss_unselected_dot">@drawable/background_dot_unselected</item>
+    </style>
 
 </resources>
