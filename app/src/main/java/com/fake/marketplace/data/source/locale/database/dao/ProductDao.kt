@@ -10,11 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProductDao {
 
-    @Query("SELECT * FROM products WHERE :tag IN (tags)")
-    fun getProductListWithTag(tag: String): Flow<List<ProductDbEntity>>
-
-
-    @Query("SELECT * FROM products")
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products LEFT JOIN favorite_products ON products.id = favorite_products.productId")
     fun getProductList(): Flow<List<ProductDbEntity>>
 
     @Query("SELECT * FROM products WHERE id IN (SELECT productId FROM favorite_products)")

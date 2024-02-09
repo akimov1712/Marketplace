@@ -18,5 +18,6 @@ data class ProductDbEntity(
     val available: Int,
     val description: String,
     val infoList: List<InfoDbEntity>,
-    val ingredients: String
+    val ingredients: String,
+    val isFavorite: Boolean
 )

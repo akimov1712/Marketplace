@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "favorite_products")
 data class IdFavoriteProductDbEntity (
     @PrimaryKey
-    val id: Int = 0,
-    val productId: String
+    val productId: String,
+    val isFavorite: Boolean
 )
 

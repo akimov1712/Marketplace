@@ -9,16 +9,21 @@ import com.fake.marketplace.data.CachedDataException
 import com.fake.marketplace.data.ParseBackendResponseException
 import com.fake.marketplace.domain.entities.SortedTypeEnum
 import com.fake.marketplace.domain.entities.product.ProductEntity
+import com.fake.marketplace.domain.useCases.product.GetCachedProductListUseCase
 import com.fake.marketplace.domain.useCases.product.GetProductListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.io.IOException
+import java.net.ConnectException
 import javax.inject.Inject
 
 @HiltViewModel
 class CatalogViewModel @Inject constructor(
-    private val getProductListUseCase: GetProductListUseCase
+    private val getProductListUseCase: GetProductListUseCase,
+    private val getCachedProductListUseCase: GetCachedProductListUseCase
 ): ViewModel() {
 
     private val _state = MutableStateFlow<CatalogState>(CatalogState.Loading)
@@ -32,14 +37,25 @@ class CatalogViewModel @Inject constructor(
                 fullList = it
                 sortedProductList(tag = tag, sortType = sortType)
             }
-        } catch (e: BackendException){
-            _state.value = CatalogState.ErrorLoadingData("Ошибка на стороне сервера ${e.code}\n${e.message}")
-        } catch (e: CachedDataException){
-            _state.value = CatalogState.ErrorLoadingData("Нет соединения с сервером.\nЛокальная база пуста")
-        } catch (e: ParseBackendResponseException){
-            _state.value = CatalogState.ErrorLoadingData("Ошибка при чтении данных")
-        } catch (e: Exception){
-            _state.value = CatalogState.ErrorLoadingData("Произошла непредвиденная ошибка")
+        } catch (e: ConnectException) {
+            _state.emit(CatalogState.ErrorLoadingData("Нет интернет соединения"))
+            getCachedProduct()
+        } catch (e: BackendException) {
+            _state.emit(CatalogState.ErrorLoadingData("Ошибка на стороне сервера ${e.code}\n${e.message}"))
+        } catch (e: ParseBackendResponseException) {
+            _state.emit(CatalogState.ErrorLoadingData("Ошибка при чтении данных"))
+        }
+    }
+
+    private fun getCachedProduct() = viewModelScope.launch {
+        try {
+            getCachedProductListUseCase().collect{
+                _state.emit(CatalogState.ProductList(it))
+            }
+        }  catch (e: CachedDataException) {
+            _state.emit(CatalogState.ErrorLoadingData("Нет соединения с сервером.\nЛокальная база пуста"))
+        } catch (e: IOException) {
+            _state.emit(CatalogState.ErrorLoadingData("Произошла ошибка"))
         }
     }
 

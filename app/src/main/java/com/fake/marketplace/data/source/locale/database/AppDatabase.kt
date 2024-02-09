@@ -19,7 +19,7 @@ import com.fake.marketplace.data.source.locale.database.typeConverters.ListStrin
         ProductDbEntity::class,
         IdFavoriteProductDbEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = true
 )
 @TypeConverters(

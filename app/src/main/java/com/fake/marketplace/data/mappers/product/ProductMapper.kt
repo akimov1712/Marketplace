@@ -17,6 +17,7 @@ object ProductMapper  {
         description = dto.description,
         infoList = ProductInfoMapper.mapDtoListDbList(dto.info),
         ingredients = dto.ingredients,
+        isFavorite = false
     )
 
     fun mapDbToEntity(dbEntity: ProductDbEntity) = ProductEntity(
@@ -30,6 +31,7 @@ object ProductMapper  {
         description = dbEntity.description,
         infoList = ProductInfoMapper.mapDbListEntityList(dbEntity.infoList),
         ingredients = dbEntity.ingredients,
+        isFavorite = dbEntity.isFavorite
     )
 
 

@@ -13,5 +13,6 @@ data class ProductEntity(
     val available: Int,
     val description: String,
     val infoList: List<InfoEntity>,
-    val ingredients: String
+    val ingredients: String,
+    val isFavorite: Boolean
 )

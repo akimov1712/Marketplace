@@ -15,21 +15,18 @@ import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
 
+
+
 class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val productApi: ProductApiService,
 ): ProductRepository, BaseRetrofitSource() {
 
-    override fun getCachedProduct() =
+    override suspend fun getCachedProduct() =
         productDao.getProductList().map {
-            mapDbListAndCheckEmptyList(it)
+            if (it.isNullOrEmpty()) throw CachedDataException()
+            it.map { product -> ProductMapper.mapDbToEntity(product) }
         }
-
-
-    private fun mapDbListAndCheckEmptyList(it: List<ProductDbEntity>): List<ProductEntity> {
-        it ?: throw CachedDataException() // студия не видит смысла в этой строке:(
-        return it.map { product -> ProductMapper.mapDbToEntity(product) }
-    }
 
     override suspend fun getProductList() =
         wrapRetrofitExceptions {
@@ -52,10 +49,12 @@ class ProductRepositoryImpl @Inject constructor(
         }
     }
 
-    override fun getFavoriteProductList() =
+    override suspend fun getFavoriteProductList() =
         productDao.getFavoriteProductList().map {
             ProductMapper.mapDbListToEntityList(it)
         }
+
+
 
     override fun getProductItem(id: String) =
         productDao.getProductItem(id).map {

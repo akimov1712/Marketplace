@@ -2,6 +2,7 @@ package com.fake.marketplace.data.source.remote
 
 import com.fake.marketplace.data.BackendException
 import com.fake.marketplace.data.ParseBackendResponseException
+import com.google.gson.Gson
 import com.google.gson.JsonIOException
 import com.google.gson.JsonParseException
 import retrofit2.HttpException
@@ -20,19 +21,26 @@ open class BaseRetrofitSource {
         } catch (e: HttpException){
             throw createBackendException(e)
         } catch (e: IOException){
-            throw ConnectException(e.message)
+            throw ConnectException()
         }
     }
 
     private fun createBackendException(e: HttpException): Exception{
         return try {
+            val errorBody = e.response()!!.errorBody()!!.string()
+            val errorResponseBody = Gson().fromJson(errorBody, ErrorResponseBody::class.java)
             BackendException(
-                name = e.message ?: "undefined",
-                code = e.code()
+                name = errorResponseBody.message,
+                code = errorResponseBody.cod
             )
         } catch (e: Exception){
             throw ParseBackendResponseException()
         }
     }
+
+    data class ErrorResponseBody(
+        val cod: Int,
+        val message: String
+    )
 
 }

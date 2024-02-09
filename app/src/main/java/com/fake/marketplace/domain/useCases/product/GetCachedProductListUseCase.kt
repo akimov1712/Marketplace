@@ -7,6 +7,6 @@ class GetCachedProductListUseCase @Inject constructor(
     private val repository: ProductRepository
 ) {
 
-    suspend operator fun invoke() = repository.getProductList()
+    suspend operator fun invoke() = repository.getCachedProduct()
 
 }
