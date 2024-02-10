@@ -24,7 +24,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun setLoader(){
         lifecycleScope.launch {
-            delay(2000)
+            delay(1000)
             viewModel.checkSignInUser()
         }
     }
@@ -42,7 +42,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 when(it){
                     is SplashState.SignInUser -> {
                         val direction = if (it.result){
-                            SplashFragmentDirections.actionSplashFragmentToHomeFragment()
+                            SplashFragmentDirections.actionSplashFragmentToTabsFragment()
                         } else {
                             SplashFragmentDirections.actionSplashFragmentToSignInFragment()
                         }
