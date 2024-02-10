@@ -1,4 +1,4 @@
-package com.fake.marketplace.presentation.screens.tabs.catalog.adapter
+package com.fake.marketplace.presentation.base.productAdapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +8,6 @@ import com.fake.marketplace.Const.imageWithIdMap
 import com.fake.marketplace.R
 import com.fake.marketplace.databinding.ItemProductBinding
 import com.fake.marketplace.domain.entities.product.ProductEntity
-import com.fake.marketplace.presentation.base.productAdapter.ProductDiffCallback
-import com.fake.marketplace.presentation.base.productAdapter.ProductViewHolder
 
 class ProductAdapter: ListAdapter<ProductEntity, ProductViewHolder>(ProductDiffCallback()) {
 

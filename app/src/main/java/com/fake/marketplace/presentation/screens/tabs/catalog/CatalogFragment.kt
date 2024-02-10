@@ -18,7 +18,7 @@ import com.fake.marketplace.R
 import com.fake.marketplace.databinding.FragmentCatalogBinding
 import com.fake.marketplace.domain.entities.SortedTypeEnum
 import com.fake.marketplace.presentation.base.BaseFragment
-import com.fake.marketplace.presentation.screens.tabs.catalog.adapter.ProductAdapter
+import com.fake.marketplace.presentation.base.productAdapter.ProductAdapter
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

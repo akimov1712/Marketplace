@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.fake.marketplace.databinding.FragmentProfileBinding
 import com.fake.marketplace.presentation.base.BaseFragment
 import com.fake.marketplace.presentation.screens.tabs.TabsFragmentDirections
@@ -25,8 +26,15 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBind
             btnExit.setOnClickListener {
                 viewModel.logOut()
             }
+            btnOpenFavorite.setOnClickListener {
+                findNavController().navigate(
+                    ProfileFragmentDirections.actionProfileFragmentToFavoriteFragment()
+                )
+            }
         }
     }
+
+
 
     override fun observeViewModel() {
         super.observeViewModel()

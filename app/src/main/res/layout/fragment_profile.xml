@@ -93,6 +93,7 @@
             android:layout_height="24dp" />
 
         <LinearLayout
+            android:id="@+id/btn_open_favorite"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:clickable="true"

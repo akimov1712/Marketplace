@@ -33,4 +33,6 @@
     <string name="offer">Оферта</string>
     <string name="refund">Возврат товара</string>
     <string name="exit">Выйти</string>
+    <string name="products">Товары</string>
+    <string name="brends">Бренды</string>
 </resources>
