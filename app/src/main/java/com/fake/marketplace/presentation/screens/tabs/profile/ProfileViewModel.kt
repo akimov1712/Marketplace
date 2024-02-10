@@ -54,10 +54,8 @@ class ProfileViewModel @Inject constructor(
     }
 
     init {
-        viewModelScope.launch {
-            getCountFavoriteProduct()
-            getAccount()
-        }
+        getCountFavoriteProduct()
+        getAccount()
     }
 
 }
