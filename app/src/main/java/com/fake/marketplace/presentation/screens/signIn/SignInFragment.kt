@@ -2,6 +2,7 @@ package com.fake.marketplace.presentation.screens.signIn
 
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,6 +23,10 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
     private var validSurname = false
     private var validNumberPhone = false
 
+    override fun setViews() {
+        super.setViews()
+        setStatusBar()
+    }
 
     override fun observeViewModel() {
         super.observeViewModel()
@@ -68,7 +73,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                         }
                         is SignInState.AuthorizationSuccessfull -> {
                             findNavController().navigate(
-                                SignInFragmentDirections.actionSignInFragmentToHomeFragment()
+                                SignInFragmentDirections.actionSignInFragmentToTabsFragment()
                             )
                         }
                         else -> {}
@@ -76,6 +81,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                 }
             }
         }
+    }
+
+    private fun setStatusBar(){
+        val window = requireActivity().window
+        window.statusBarColor = requireActivity().resources.getColor(R.color.white)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = true
     }
 
     private fun checkButtonEnabled(){

@@ -26,4 +26,7 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProductList(productList: List<ProductDbEntity>)
 
+    @Query("SELECT count(*) FROM favorite_products WHERE isFavorite ='1'")
+    suspend fun getCountFavoriteProduct(): Int
+
 }

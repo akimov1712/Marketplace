@@ -5,23 +5,27 @@ import com.fake.marketplace.data.CachedDataException
 import com.fake.marketplace.data.mappers.product.ProductMapper
 import com.fake.marketplace.data.source.locale.database.dao.ProductDao
 import com.fake.marketplace.data.source.locale.database.entities.product.IdFavoriteProductDbEntity
-import com.fake.marketplace.data.source.locale.database.entities.product.ProductDbEntity
 import com.fake.marketplace.data.source.remote.BaseRetrofitSource
 import com.fake.marketplace.data.source.remote.ProductApiService
 import com.fake.marketplace.data.source.remote.entities.ProductResponse
 import com.fake.marketplace.domain.entities.product.ProductEntity
 import com.fake.marketplace.domain.repository.product.ProductRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.count
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
 
 
-
 class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val productApi: ProductApiService,
-): ProductRepository, BaseRetrofitSource() {
+) : ProductRepository, BaseRetrofitSource() {
+
+    override suspend fun getCountFavoriteProduct(): Int {
+        val count = productDao.getCountFavoriteProduct()
+        return count
+    }
 
     override suspend fun getCachedProduct() =
         productDao.getProductList().map {
@@ -62,7 +66,6 @@ class ProductRepositoryImpl @Inject constructor(
         productDao.getFavoriteProductList().map {
             ProductMapper.mapDbListToEntityList(it)
         }
-
 
 
     override fun getProductItem(id: String) =
