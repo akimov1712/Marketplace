@@ -1,5 +1,7 @@
 package com.fake.marketplace
 
+import com.fake.marketplace.domain.entities.SortedTypeEnum
+
 object Const {
 
     const val BASE_URL = "https://run.mocky.io/"
@@ -29,6 +31,12 @@ object Const {
         "55f58865-ae74-4b7c-9d81-b78334bb97db" to listOf(
             R.drawable.image_deep, R.drawable.image_eveline
         ),
+    )
+
+    val sortedTypeWithStringMap = mapOf(
+        SortedTypeEnum.POPULARITY_SORTED_TYPE to "rating",
+        SortedTypeEnum.PRICE_ASC_SORTED_TYPE to "priceInfoprice",
+        SortedTypeEnum.PRICE_DESC_SORTED_TYPE to "priceInfoprice",
     )
 
     const val SHOW_ALL_TAG = ""

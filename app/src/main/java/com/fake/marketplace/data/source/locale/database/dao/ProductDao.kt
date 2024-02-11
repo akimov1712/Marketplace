@@ -11,11 +11,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProductDao {
 
-    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
-            "LEFT JOIN favorite_products ON products.id = favorite_products.productId")
-    fun getProductList(): Flow<List<ProductDbEntity>>
+    @Query("SELECT *, favorite_products.isFavorite FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
+            "WHERE tags LIKE '%' || :tag || '%' ORDER BY :sortBy ASC")
+    fun getProductListAsc(tag: String, sortBy: String): Flow<List<ProductDbEntity>>
 
-    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
+    @Query("SELECT *, favorite_products.isFavorite FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
+            "WHERE tags LIKE '%' || :tag || '%' ORDER BY :sortBy DESC")
+    fun getProductListDesc(tag: String, sortBy: String): Flow<List<ProductDbEntity>>
+
+    @Query("SELECT *, favorite_products.isFavorite FROM products " +
             "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
             "WHERE favorite_products.isFavorite ='1'")
     fun getFavoriteProductList(): Flow<List<ProductDbEntity>>

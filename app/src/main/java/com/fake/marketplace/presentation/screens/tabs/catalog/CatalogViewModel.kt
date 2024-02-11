@@ -1,6 +1,5 @@
 package com.fake.marketplace.presentation.screens.tabs.catalog
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fake.marketplace.Const.SHOW_ALL_TAG
@@ -15,7 +14,6 @@ import com.fake.marketplace.domain.useCases.product.UpdateFavoriteProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.net.ConnectException
@@ -31,9 +29,6 @@ class CatalogViewModel @Inject constructor(
     private val _state = MutableStateFlow<CatalogState>(CatalogState.Loading)
     val state = _state.asStateFlow()
 
-    private var fullList: List<ProductEntity> = emptyList()
-    private var savedTag = SHOW_ALL_TAG
-    private var savedSortType = SortedTypeEnum.POPULARITY_SORTED_TYPE
 
     fun updateFavoriteState(id: String, isFavorite: Boolean) = viewModelScope.launch {
         updateFavoriteProductUseCase(id, isFavorite)
@@ -41,15 +36,12 @@ class CatalogViewModel @Inject constructor(
 
     fun getProductList(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
         try {
-            savedTag = tag
-            savedSortType = sortType
-            getProductListUseCase().collect{
-                fullList = it
-                sortedProductList(tag = savedTag, sortType = savedSortType)
+            getProductListUseCase(tag, sortType).collect{
+                _state.emit(CatalogState.ProductList(it))
             }
         } catch (e: ConnectException) {
             _state.emit(CatalogState.ErrorLoadingData("Нет интернет соединения"))
-            getCachedProduct()
+            getCachedProduct(tag, sortType)
         } catch (e: BackendException) {
             _state.emit(CatalogState.ErrorLoadingData("Ошибка на стороне сервера ${e.code}\n${e.message}"))
         } catch (e: ParseBackendResponseException) {
@@ -57,11 +49,10 @@ class CatalogViewModel @Inject constructor(
         }
     }
 
-    private fun getCachedProduct() = viewModelScope.launch {
+    private fun getCachedProduct(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
         try {
-            getCachedProductListUseCase().collect{
-                fullList = it
-                sortedProductList(tag = savedTag, sortType = savedSortType)
+            getCachedProductListUseCase(tag, sortType).collect {
+                _state.emit(CatalogState.ProductList(it))
             }
         }  catch (e: CachedDataException) {
             _state.emit(CatalogState.ErrorLoadingData("Нет соединения с сервером.\nЛокальная база пуста"))
@@ -69,22 +60,4 @@ class CatalogViewModel @Inject constructor(
             _state.emit(CatalogState.ErrorLoadingData("Произошла ошибка"))
         }
     }
-
-    fun sortedProductList(
-        tag: String,
-        sortType: SortedTypeEnum,
-    ) {
-        var sortedList = when (sortType) {
-            SortedTypeEnum.POPULARITY_SORTED_TYPE -> fullList.sortedByDescending { it.feedback.rating }
-            SortedTypeEnum.PRICE_ASK_SORTED_TYPE -> fullList.sortedBy { it.price.priceWithDiscount.toInt() }
-            SortedTypeEnum.PRICE_DESK_SORTED_TYPE -> fullList.sortedByDescending { it.price.priceWithDiscount.toInt() }
-        }
-        if (tag != SHOW_ALL_TAG){
-            sortedList = sortedList.filter {
-                it.tags.contains(tag)
-            }
-        }
-        _state.value = CatalogState.ProductList(sortedList)
-    }
-
 }

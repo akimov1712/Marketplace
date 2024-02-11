@@ -102,21 +102,21 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
                 R.id.menu_popular -> {
                     binding.tvSorted.setText(R.string.sorted_popular)
                     sortedType = SortedTypeEnum.POPULARITY_SORTED_TYPE
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                     true
                 }
 
                 R.id.menu_price_ask -> {
                     binding.tvSorted.setText(R.string.sorted_price_asc)
-                    sortedType = SortedTypeEnum.PRICE_ASK_SORTED_TYPE
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    sortedType = SortedTypeEnum.PRICE_ASC_SORTED_TYPE
+                    viewModel.getProductList(choiceTag, sortedType)
                     true
                 }
 
                 R.id.menu_price_desc -> {
                     binding.tvSorted.setText(R.string.sorted_price_desc)
-                    sortedType = SortedTypeEnum.PRICE_DESK_SORTED_TYPE
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    sortedType = SortedTypeEnum.PRICE_DESC_SORTED_TYPE
+                    viewModel.getProductList(choiceTag, sortedType)
                     true
                 }
                 else -> {
@@ -135,28 +135,28 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
             }
             if (checkedIds.isEmpty()) {
                 choiceTag = SHOW_ALL_TAG
-                viewModel.sortedProductList(choiceTag, sortedType)
+                viewModel.getProductList(choiceTag, sortedType)
             }
             when (group.checkedChipId) {
                 R.id.chip_show_all -> {
                     choiceTag = SHOW_ALL_TAG
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                 }
                 R.id.chip_face -> {
                     choiceTag = FACE_TAG
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                 }
                 R.id.chip_body -> {
                     choiceTag = BODY_TAG
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                 }
                 R.id.chip_tan -> {
                     choiceTag = SUNTAN_TAG
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                 }
                 R.id.chip_mask -> {
                     choiceTag = MASK_TAG
-                    viewModel.sortedProductList(choiceTag, sortedType)
+                    viewModel.getProductList(choiceTag, sortedType)
                 }
             }
         }
