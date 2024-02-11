@@ -19,6 +19,8 @@ import com.fake.marketplace.databinding.FragmentCatalogBinding
 import com.fake.marketplace.domain.entities.SortedTypeEnum
 import com.fake.marketplace.presentation.base.BaseFragment
 import com.fake.marketplace.presentation.base.productAdapter.ProductAdapter
+import com.fake.marketplace.presentation.screens.tabs.TabsFragmentDirections
+import com.fake.marketplace.utils.findTopNavController
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -74,6 +76,9 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
     private fun setProductAdapter() {
         adapter.setOnFavoriteClickListener = { id, isFavorite ->
             viewModel.updateFavoriteState(id, isFavorite)
+        }
+        adapter.setOnItemClickListener = {
+            findTopNavController().navigate(TabsFragmentDirections.actionTabsFragmentToDetailProductFragment(it))
         }
         binding.rvProducts.adapter = adapter
     }

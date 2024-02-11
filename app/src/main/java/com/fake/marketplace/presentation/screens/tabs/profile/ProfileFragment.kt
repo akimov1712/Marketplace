@@ -1,5 +1,7 @@
 package com.fake.marketplace.presentation.screens.tabs.profile
 
+import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -19,6 +21,12 @@ import kotlinx.coroutines.launch
 class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
     private val viewModel by viewModels<ProfileViewModel>()
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getCountFavoriteProduct()
+        viewModel.getAccount()
+    }
 
     override fun setListenersInView() {
         super.setListenersInView()

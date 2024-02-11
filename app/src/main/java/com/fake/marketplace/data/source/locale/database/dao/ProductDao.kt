@@ -11,10 +11,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProductDao {
 
-    @Query("SELECT products.*, favorite_products.isFavorite FROM products LEFT JOIN favorite_products ON products.id = favorite_products.productId")
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId")
     fun getProductList(): Flow<List<ProductDbEntity>>
 
-    @Query("SELECT * FROM products WHERE id IN (SELECT productId FROM favorite_products)")
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
+            "WHERE favorite_products.isFavorite ='1'")
     fun getFavoriteProductList(): Flow<List<ProductDbEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -32,6 +32,8 @@ class CatalogViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     private var fullList: List<ProductEntity> = emptyList()
+    private var savedTag = SHOW_ALL_TAG
+    private var savedSortType = SortedTypeEnum.POPULARITY_SORTED_TYPE
 
     fun updateFavoriteState(id: String, isFavorite: Boolean) = viewModelScope.launch {
         updateFavoriteProductUseCase(id, isFavorite)
@@ -39,9 +41,11 @@ class CatalogViewModel @Inject constructor(
 
     fun getProductList(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
         try {
+            savedTag = tag
+            savedSortType = sortType
             getProductListUseCase().collect{
                 fullList = it
-                sortedProductList(tag = tag, sortType = sortType)
+                sortedProductList(tag = savedTag, sortType = savedSortType)
             }
         } catch (e: ConnectException) {
             _state.emit(CatalogState.ErrorLoadingData("Нет интернет соединения"))
@@ -56,7 +60,8 @@ class CatalogViewModel @Inject constructor(
     private fun getCachedProduct() = viewModelScope.launch {
         try {
             getCachedProductListUseCase().collect{
-                _state.emit(CatalogState.ProductList(it))
+                fullList = it
+                sortedProductList(tag = savedTag, sortType = savedSortType)
             }
         }  catch (e: CachedDataException) {
             _state.emit(CatalogState.ErrorLoadingData("Нет соединения с сервером.\nЛокальная база пуста"))
