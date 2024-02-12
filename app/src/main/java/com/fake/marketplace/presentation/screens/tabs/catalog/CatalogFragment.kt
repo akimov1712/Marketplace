@@ -16,7 +16,7 @@ import com.fake.marketplace.Const.SHOW_ALL_TAG
 import com.fake.marketplace.Const.SUNTAN_TAG
 import com.fake.marketplace.R
 import com.fake.marketplace.databinding.FragmentCatalogBinding
-import com.fake.marketplace.domain.entities.SortedTypeEnum
+import com.fake.marketplace.domain.entities.SortTypeEnum
 import com.fake.marketplace.presentation.base.BaseFragment
 import com.fake.marketplace.presentation.base.productAdapter.ProductAdapter
 import com.fake.marketplace.presentation.screens.tabs.TabsFragmentDirections
@@ -31,7 +31,7 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
     private val viewModel by viewModels<CatalogViewModel>()
     private val adapter by lazy { ProductAdapter() }
 
-    private var sortedType = SortedTypeEnum.POPULARITY_SORTED_TYPE
+    private var sortedType = SortTypeEnum.POPULARITY
     private var choiceTag = SHOW_ALL_TAG
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,21 +101,21 @@ class CatalogFragment : BaseFragment<FragmentCatalogBinding>(FragmentCatalogBind
             when (it.itemId) {
                 R.id.menu_popular -> {
                     binding.tvSorted.setText(R.string.sorted_popular)
-                    sortedType = SortedTypeEnum.POPULARITY_SORTED_TYPE
+                    sortedType = SortTypeEnum.POPULARITY
                     viewModel.getProductList(choiceTag, sortedType)
                     true
                 }
 
                 R.id.menu_price_ask -> {
                     binding.tvSorted.setText(R.string.sorted_price_asc)
-                    sortedType = SortedTypeEnum.PRICE_ASC_SORTED_TYPE
+                    sortedType = SortTypeEnum.PRICE_ASC
                     viewModel.getProductList(choiceTag, sortedType)
                     true
                 }
 
                 R.id.menu_price_desc -> {
                     binding.tvSorted.setText(R.string.sorted_price_desc)
-                    sortedType = SortedTypeEnum.PRICE_DESC_SORTED_TYPE
+                    sortedType = SortTypeEnum.PRICE_DESC
                     viewModel.getProductList(choiceTag, sortedType)
                     true
                 }

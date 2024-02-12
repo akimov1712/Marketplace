@@ -1,6 +1,6 @@
 package com.fake.marketplace.domain.useCases.product
 
-import com.fake.marketplace.domain.entities.SortedTypeEnum
+import com.fake.marketplace.domain.entities.SortTypeEnum
 import com.fake.marketplace.domain.repository.product.ProductRepository
 import javax.inject.Inject
 
@@ -10,7 +10,7 @@ class GetCachedProductListUseCase @Inject constructor(
 
     suspend operator fun invoke(
         tag: String,
-        sortType: SortedTypeEnum,
+        sortType: SortTypeEnum,
         ) = repository.getCachedProduct(tag, sortType)
 
 }

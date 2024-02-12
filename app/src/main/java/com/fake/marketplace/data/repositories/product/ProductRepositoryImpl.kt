@@ -7,10 +7,11 @@ import com.fake.marketplace.data.source.locale.database.entities.product.IdFavor
 import com.fake.marketplace.data.source.remote.BaseRetrofitSource
 import com.fake.marketplace.data.source.remote.ProductApiService
 import com.fake.marketplace.data.source.remote.entities.ProductResponse
-import com.fake.marketplace.domain.entities.SortedTypeEnum
+import com.fake.marketplace.domain.entities.SortTypeEnum
 import com.fake.marketplace.domain.entities.product.ProductEntity
 import com.fake.marketplace.domain.repository.product.ProductRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import retrofit2.Response
 import javax.inject.Inject
@@ -28,36 +29,28 @@ class ProductRepositoryImpl @Inject constructor(
 
     override suspend fun getCachedProduct(
         tag: String,
-        sortType: SortedTypeEnum,
+        sortType: SortTypeEnum,
     ): Flow<List<ProductEntity>> {
-        var sortedField:String? = null
-        var isAscSorted = false
-        when (sortType) {
-            SortedTypeEnum.POPULARITY_SORTED_TYPE -> {
-                sortedField = "rating"
-                isAscSorted = false
+        return when(sortType){
+            SortTypeEnum.POPULARITY -> {
+                productDao.getProductListSortedPopularityDesc(tag).map {
+                    if (it.isEmpty()) throw CachedDataException()
+                    it.map { product -> ProductMapper.mapDbToEntity(product) }
+                }
             }
-            SortedTypeEnum.PRICE_ASC_SORTED_TYPE -> {
-                sortedField = "priceInfoprice"
-                isAscSorted = true
+            SortTypeEnum.PRICE_ASC -> {
+                productDao.getProductListSortedPriceAsc(tag).map {
+                    if (it.isEmpty()) throw CachedDataException()
+                    it.map { product -> ProductMapper.mapDbToEntity(product) }
+                }
             }
-            SortedTypeEnum.PRICE_DESC_SORTED_TYPE -> {
-                sortedField = "priceInfoprice"
-                isAscSorted = false
-            }
-        }
-        return if (isAscSorted){
-            productDao.getProductListAsc(tag, sortedField).map {
-                if (it.isEmpty()) throw CachedDataException()
-                it.map { product -> ProductMapper.mapDbToEntity(product) }
-            }
-        } else {
-            productDao.getProductListDesc(tag, sortedField).map {
-                if (it.isEmpty()) throw CachedDataException()
-                it.map { product -> ProductMapper.mapDbToEntity(product) }
+            SortTypeEnum.PRICE_DESC -> {
+                productDao.getProductListSortedPriceDesc(tag).map {
+                    if (it.isEmpty()) throw CachedDataException()
+                    it.map { product -> ProductMapper.mapDbToEntity(product) }
+                }
             }
         }
-
     }
 
 
@@ -71,7 +64,7 @@ class ProductRepositoryImpl @Inject constructor(
 
     override suspend fun getProductList(
         tag: String,
-        sortType: SortedTypeEnum,
+        sortType: SortTypeEnum,
     ): Flow<List<ProductEntity>>{
         return wrapRetrofitExceptions {
             val productResponse = productApi.getProductList()
@@ -81,7 +74,7 @@ class ProductRepositoryImpl @Inject constructor(
 
     private suspend fun returnDataFlow(
         tag: String,
-        sortType: SortedTypeEnum,
+        sortType: SortTypeEnum,
         productResponse: Response<ProductResponse>): Flow<List<ProductEntity>> {
         processData(productResponse)
         return getCachedProduct(tag, sortType)

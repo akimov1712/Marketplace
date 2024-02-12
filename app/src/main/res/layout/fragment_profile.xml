@@ -150,7 +150,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:background="@drawable/ic_short_arrow"
+                android:background="@drawable/ic_short_arrow_down"
                 android:rotation="-90" />
 
         </LinearLayout>
@@ -202,7 +202,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:background="@drawable/ic_short_arrow"
+                android:background="@drawable/ic_short_arrow_down"
                 android:rotation="-90" />
 
         </LinearLayout>
@@ -254,7 +254,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:background="@drawable/ic_short_arrow"
+                android:background="@drawable/ic_short_arrow_down"
                 android:rotation="-90" />
 
         </LinearLayout>
@@ -306,7 +306,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:background="@drawable/ic_short_arrow"
+                android:background="@drawable/ic_short_arrow_down"
                 android:rotation="-90" />
 
         </LinearLayout>
@@ -358,7 +358,7 @@
             <ImageView
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:background="@drawable/ic_short_arrow"
+                android:background="@drawable/ic_short_arrow_down"
                 android:rotation="-90" />
 
         </LinearLayout>

@@ -9,14 +9,14 @@ object PriceMapper {
     fun mapDtoToDb(dto: PriceDto) = PriceDbEntity(
         price = dto.price,
         discount = dto.discount,
-        priceWithDiscount = dto.priceWithDiscount,
+        priceWithDiscount = dto.priceWithDiscount.toInt(),
         unit = dto.unit
     )
 
     fun mapDbToEntity(dbEntity: PriceDbEntity) = PriceEntity(
         price = dbEntity.price,
         discount = dbEntity.discount,
-        priceWithDiscount = dbEntity.priceWithDiscount,
+        priceWithDiscount = dbEntity.priceWithDiscount.toString(),
         unit = dbEntity.unit
     )
 

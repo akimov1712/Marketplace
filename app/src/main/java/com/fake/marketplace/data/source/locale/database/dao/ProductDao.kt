@@ -11,15 +11,20 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProductDao {
 
-    @Query("SELECT *, favorite_products.isFavorite FROM products " +
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
             "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
-            "WHERE tags LIKE '%' || :tag || '%' ORDER BY :sortBy ASC")
-    fun getProductListAsc(tag: String, sortBy: String): Flow<List<ProductDbEntity>>
+            "WHERE tags LIKE '%' || :tag || '%' ORDER BY priceInfopriceWithDiscount ASC")
+    fun getProductListSortedPriceAsc(tag: String): Flow<List<ProductDbEntity>>
 
-    @Query("SELECT *, favorite_products.isFavorite FROM products " +
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
             "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
-            "WHERE tags LIKE '%' || :tag || '%' ORDER BY :sortBy DESC")
-    fun getProductListDesc(tag: String, sortBy: String): Flow<List<ProductDbEntity>>
+            "WHERE tags LIKE '%' || :tag || '%' ORDER BY priceInfopriceWithDiscount DESC")
+    fun getProductListSortedPriceDesc(tag: String): Flow<List<ProductDbEntity>>
+
+    @Query("SELECT products.*, favorite_products.isFavorite FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
+            "WHERE tags LIKE '%' || :tag || '%' ORDER BY rating DESC")
+    fun getProductListSortedPopularityDesc(tag: String): Flow<List<ProductDbEntity>>
 
     @Query("SELECT *, favorite_products.isFavorite FROM products " +
             "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
@@ -29,7 +34,9 @@ interface ProductDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateFavoriteProduct(entity: IdFavoriteProductDbEntity)
 
-    @Query("SELECT * FROM products WHERE id=:id LIMIT 1")
+    @Query("SELECT * FROM products " +
+            "LEFT JOIN favorite_products ON products.id = favorite_products.productId " +
+            "WHERE id=:id LIMIT 1")
     fun getProductItem(id: String): Flow<ProductDbEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

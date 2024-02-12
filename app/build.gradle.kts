@@ -55,6 +55,7 @@ dependencies {
 
 //    View
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+    implementation ("me.zhanghai.android.materialratingbar:library:1.4.0")
 
 //    Retrofit
     implementation ("com.squareup.retrofit2:retrofit:$retrofit")

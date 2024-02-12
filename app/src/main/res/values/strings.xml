@@ -35,4 +35,10 @@
     <string name="exit">Выйти</string>
     <string name="products">Товары</string>
     <string name="brends">Бренды</string>
+    <string name="descr">Описание</string>
+    <string name="hide">Скрыть</string>
+    <string name="more">Подробнее</string>
+    <string name="characteristics">Характеристики</string>
+    <string name="composition">Состав</string>
+    <string name="add_bag">Добавить корзину</string>
 </resources>

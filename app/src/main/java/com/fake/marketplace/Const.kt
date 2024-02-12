@@ -1,7 +1,5 @@
 package com.fake.marketplace
 
-import com.fake.marketplace.domain.entities.SortedTypeEnum
-
 object Const {
 
     const val BASE_URL = "https://run.mocky.io/"
@@ -33,16 +31,13 @@ object Const {
         ),
     )
 
-    val sortedTypeWithStringMap = mapOf(
-        SortedTypeEnum.POPULARITY_SORTED_TYPE to "rating",
-        SortedTypeEnum.PRICE_ASC_SORTED_TYPE to "priceInfoprice",
-        SortedTypeEnum.PRICE_DESC_SORTED_TYPE to "priceInfoprice",
-    )
-
     const val SHOW_ALL_TAG = ""
     const val FACE_TAG = "face"
     const val BODY_TAG = "body"
     const val SUNTAN_TAG = "suntan"
     const val MASK_TAG = "mask"
+
+    const val MIN_LINES_TEXT = 2
+    const val MAX_LINES_TEXT = 10000
 
 }

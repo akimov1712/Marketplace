@@ -2,12 +2,10 @@ package com.fake.marketplace.presentation.screens.tabs.catalog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.fake.marketplace.Const.SHOW_ALL_TAG
 import com.fake.marketplace.data.BackendException
 import com.fake.marketplace.data.CachedDataException
 import com.fake.marketplace.data.ParseBackendResponseException
-import com.fake.marketplace.domain.entities.SortedTypeEnum
-import com.fake.marketplace.domain.entities.product.ProductEntity
+import com.fake.marketplace.domain.entities.SortTypeEnum
 import com.fake.marketplace.domain.useCases.product.GetCachedProductListUseCase
 import com.fake.marketplace.domain.useCases.product.GetProductListUseCase
 import com.fake.marketplace.domain.useCases.product.UpdateFavoriteProductUseCase
@@ -34,7 +32,7 @@ class CatalogViewModel @Inject constructor(
         updateFavoriteProductUseCase(id, isFavorite)
     }
 
-    fun getProductList(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
+    fun getProductList(tag: String, sortType: SortTypeEnum) = viewModelScope.launch {
         try {
             getProductListUseCase(tag, sortType).collect{
                 _state.emit(CatalogState.ProductList(it))
@@ -49,7 +47,7 @@ class CatalogViewModel @Inject constructor(
         }
     }
 
-    private fun getCachedProduct(tag: String, sortType: SortedTypeEnum) = viewModelScope.launch {
+    private fun getCachedProduct(tag: String, sortType: SortTypeEnum) = viewModelScope.launch {
         try {
             getCachedProductListUseCase(tag, sortType).collect {
                 _state.emit(CatalogState.ProductList(it))

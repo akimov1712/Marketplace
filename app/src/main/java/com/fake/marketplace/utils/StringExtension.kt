@@ -20,3 +20,20 @@ fun Int.productCountString(): String {
         else -> "$this товаров"
     }
 }
+
+fun Int.setTerminationFeedbackCountString(): String {
+    return when {
+        this % 10 == 1 && this % 100 != 11 -> "$this отзыв"
+        this % 10 in 2..4 && this % 100 !in 12..14 -> "$this отзыва"
+        else -> "$this отзывов"
+    }
+}
+
+
+fun Int.productCountOrderQuantityString(): String {
+    return when {
+        this % 10 == 1 && this % 100 != 11 -> "$this штука"
+        this % 10 in 2..4 && this % 100 !in 12..14 -> "$this штуки"
+        else -> "$this штук"
+    }
+}
